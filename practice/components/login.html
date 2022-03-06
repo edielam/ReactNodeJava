@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+<script type="text/babel" charset="utf-8">
+  class Login extends React.Component{
+      render(){
+	  return <div>
+	      <h1>{this.props.title}</h1>
+	      <label>User Name</label>
+	      <br/><br/>
+	      <input type="text"/>
+	      <br/><br/>
+	      <label>Password</label>
+	      <br/><br/>
+	      <input type="password"/>
+	      <br/><br/>
+	      <input type = "button" value="Submit"/>
+	      </div>;
+      }
+  }
+  ReactDOM.render(<div><Login title="Please Login"/></div>, document.getElementById("root"));
+    </script>
+  </body>
+</html>

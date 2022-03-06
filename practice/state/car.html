@@ -1,0 +1,74 @@
+<!Doctype html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>First Assignment</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+        #root {
+            font-size: 20px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="root">
+        <script type="text/babel">
+
+            var CARS = [
+                { make: "BMW", model: "A8", year: "2019" }
+
+            ];
+
+            var CARS2 = [{ make: "BMW", model: "X2", year: "2019" },
+            { make: "HONDA", model: "Accord", year: "2019" }
+            ];
+
+            class Car extends React.Component {
+
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        cars: CARS
+                    };
+                }
+
+                handleOnUpdate() {
+                    this.setState({ cars: CARS2 });
+                };
+
+                render() {
+                    return <div>
+                        <label>Cars  </label><br /> <br />
+                        <table>
+                            <thead>
+                                <td>Make</td>
+                                <td>Model</td>
+                                <td>Year</td>
+                            </thead>
+                            <tbody>
+                                {this.state.cars.map(car =>
+                                    <tr><td>{car.make}</td>
+                                        <td>{car.model}</td>
+                                        <td>{car.year}</td></tr>)}
+                            </tbody>
+                        </table>
+                        <input type="button" value="Update" onClick={this.handleOnUpdate.bind(this)} />
+                    </div>
+                }
+            }
+            ReactDOM.render(<div><Car />
+            </div>, document.getElementById("root"));
+
+        </script>
+
+    </div>
+</body>
+
+</html>

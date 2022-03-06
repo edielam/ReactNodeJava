@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>First reaction</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+      <script type="text/babel" charset="utf-8">
+        class ListCourses extends React.Component{
+            render(){
+            return <div>
+                        <h1>{this.props.title}</h1>
+                        <ul>
+                          <li>ReactJS</li>
+                          <li>AngularJS</li>
+                          <li>Express</li>
+                          <li>NodeJS</li>
+                      </ul>
+                  </div>;
+              }
+          }
+        class ListCourses2 extends React.Component{
+            render(){
+              var courses = ['Angular', 'React', 'Express', 'Node'];
+              var liElements = [];
+              for(var course of courses){
+                  liElements.push(<li>{course}</li>);
+              }
+              return <div>
+                      <h1>{this.props.title}</h1>
+                      <ul>{liElements}</ul>
+                    </div>;
+            }
+          }
+          class ListCourses3 extends React.Component{
+            render(){
+              var courses = ['Angular', 'React', 'Express', 'Node'];
+              
+              return <div>
+                      <h1>{this.props.title}</h1>
+                      <ul>{courses.map(course=><li>{course}</li>)}</ul>
+                    </div>;
+            }
+          }
+          class ListStudents extends React.Component{
+            render(){
+              return <div>
+                {this.props.title}
+                <table>
+                  <thead>
+                    <tr>
+                      <td>Name</td>
+                      <td>Age</td>
+                      <td>City</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Eddiee</td>
+                      <td>27</td>
+                      <td>King of Africa</td>
+                    </tr>
+                    <tr>
+                      <td>Eddiee</td>
+                      <td>27</td>
+                      <td>King of Africa</td>
+                    </tr>
+                    <tr>
+                      <td>Eddiee</td>
+                      <td>27</td>
+                      <td>King of Africa</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            }
+          }
+          class RowCreator extends React.Component{
+            render(){
+              var std = this.props.item;
+              return <tr>
+                      <td>{std.name}</td>
+                      <td>{std.age}</td>
+                      <td>{std.city}</td>
+                    </tr>
+            }
+          }
+          class ListStudents2 extends React.Component{
+            render(){
+              var students =[{name:"Doug",age:40, city:"Gangalia"},
+                {name:"Ahmed",age:20,city:"samu"},
+                {name:"Ahmed",age:20,city:"samu"},
+                {name:"Ahmed",age:20,city:"samu"},
+                {name:"Ahmed",age:20,city:"samu"}
+              ];
+              return <div>
+                {this.props.title}
+                <table>
+                  <thead>
+                    <tr>
+                      <td>Name</td>
+                      <td>Age</td>
+                      <td>City</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {students.map(stdi=> <RowCreator item={stdi}/>
+                    
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            }
+          }
+            ReactDOM.render(<div><ListCourses2 title="List of Courses"/><ListStudents2 title="List of Students"/></div>, document.getElementById("root"));
+      </script>
+  </body>
+</html>

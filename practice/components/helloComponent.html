@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>First reaction</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+<script type="text/babel" charset="utf-8">
+  class Hello extends React.Component{
+      render(){
+	  return <b>Hello {this.props.me} {this.props.children}</b>;
+      }
+  }
+      ReactDOM.render(<div><Hello me=" Eddie "><p>Yoooo</p></Hello><Hello me="Lampoh "/></div>, document.getElementById("root"));
+    </script>
+  </body>
+</html>

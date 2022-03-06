@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+<script type="text/babel" charset="utf-8">
+  class ListCourses extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {courses:['angular', 'React', 'Node']};
+    }
+    handleUpdate(){
+        alert("Inside alert");
+        this.setState({courses:['Java web services', 'Spring boot', 'Node']});
+    }
+    render(){
+      return <div>
+        <h1>{this.props.title}</h1>
+        <ul>
+            {this.state.courses.map(course => <li>{course}</li>)}
+        </ul>
+        <input type="button" value="update" onClick={this.handleUpdate.bind(this)}/>
+      </div>
+    }
+  }
+  ReactDOM.render(<div><ListCourses title="List of Courses"/></div>, document.getElementById("root"));
+    </script>
+  </body>
+</html>

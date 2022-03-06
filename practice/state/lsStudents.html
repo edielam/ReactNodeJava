@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>First reaction</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+      <script type="text/babel" charset="utf-8">
+       
+          class RowCreator extends React.Component{
+            render(){
+              var std = this.props.item;
+              return <tr>
+                      <td>{std.name}</td>
+                      <td>{std.age}</td>
+                      <td>{std.city}</td>
+                    </tr>
+            }
+          }
+          var STUDENTS =[{name:"Doug",age:40, city:"Gangalia"},
+                {name:"Ahmed",age:20,city:"samu"},
+                {name:"John",age:30,city:"london"},
+                {name:"kalid",age:50,city:"kumasi"},
+                {name:"Bord",age:40,city:"samu"}
+              ];
+          class ListStudents extends React.Component{
+              constructor(props){
+                  super(props);
+                  this.state = {students:STUDENTS,
+                                studentsClone:STUDENTS};
+              }
+              handleOnChange(event){
+                //  alert(event.target.value);
+                var filterString = event.target.value;
+                var filteredStudents = [];
+                for(var stud of this.state.students){
+                   if(stud.name.toLowerCase().indexOf(filterString.toLowerCase())>=0 ||
+                   stud.city.toLowerCase().indexOf(filterString.toLowerCase())>=0){
+                        filteredStudents.push(stud);
+                   }
+                }
+                this.setState({studentsClone:filteredStudents});
+              }
+            render(){
+              return <div>
+                <h1>{this.props.title}</h1>
+            
+                <input type="text" placeholder="Search by name or city" onChange={this.handleOnChange.bind(this)}/>
+                <table>
+                  <thead>
+                    <tr>
+                      <td>Name</td>
+                      <td>Age</td>
+                      <td>City</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.studentsClone.map(stdi=> <RowCreator item={stdi}/>
+                    
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            }
+          }
+            ReactDOM.render(<div><ListStudents title="List of Students"/></div>, document.getElementById("root"));
+      </script>
+  </body>
+</html>

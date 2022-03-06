@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    </script>
+    
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" charset="utf-8">
+        class Text extends React.Component{
+            render(){
+                var textStyle = {
+                    backgroundColor: "yellow",
+                    color: "rebeccapurple",
+                    fontSize: 30,
+                    textAlign: "center",
+                    padding: 10,
+                    margin: 10
+                };
+                return <div style={textStyle}>
+                    {this.props.children}
+                    </div>
+            }
+        }
+        ReactDOM.render(<div><Text>India</Text>
+            <Text>Nigeria</Text>
+            <Text>Ghana</Text>
+            </div>, document.getElementById("root"));
+    </script>
+  </body>
+</html>

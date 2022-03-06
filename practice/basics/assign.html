@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>First React</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    </script>
+    <style>
+      #root {
+	  background-color:lightblue;
+      }
+      #root h1{
+	  font-size: 60px;
+	  color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" charset="utf-8">
+      ReactDOM.render(<h1>You are the creator of your Destiny!</h1>, document.getElementById("root"));
+    </script>
+  </body>
+</html>
