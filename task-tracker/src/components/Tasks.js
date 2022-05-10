@@ -1,9 +1,10 @@
 import React from 'react'
+import Task from './Task'
 
 const Tasks = ({tasks}) => {
    return (
      <>
-     {tasks.map((idx)=> (<h2 key={idx.id}>{idx.text}</h2>))}
+     {tasks.map((idx)=> (<Task key={idx.id} idx={idx}/>))}
      </>
    )
  }

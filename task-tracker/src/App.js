@@ -20,7 +20,7 @@ function App() {
     {
     "id": 3,
     "text": "Parents meeting at farm",
-    "day": "Mar 7th at 1:30pm",
+    "day": "Feb 7th at 1:30pm",
     "reminder": true
     }
 ])
