@@ -14,7 +14,7 @@ const Header = ({title, onAdd, showAdd}) => {
   )
 }
 Header.defaultProps ={
-    title: 'Task tracker',
+    title: 'Task Tracker',
 }
 // using proptypes helps make code more robust
 //for catching some errors
