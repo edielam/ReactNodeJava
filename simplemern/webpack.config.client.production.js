@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const CURRENT_WORKING_DIR = process.cwd()
 
 const config = {
@@ -12,16 +12,16 @@ const config = {
         publicPath: "/dist/"
     },
     module: {
-    rules: [
-        {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            use: [
-                'babel-loader'
-            ]
-        }
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    'babel-loader'
+                ]
+            }
         ]
     }
 }
 
-module.exports = config;
+module.exports = config

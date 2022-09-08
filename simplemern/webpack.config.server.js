@@ -1,5 +1,5 @@
-const path = require('path');
-cosnt nodeExternals = require('webpack-node-externals');
+const path = require('path')
+const nodeExternals = require('webpack-node-externals')
 const CURRENT_WORKING_DIR = process.cwd()
 
 const config = {
@@ -14,14 +14,15 @@ const config = {
     },
     externals: [nodeExternals()],
     module: {
-    rules: [
-        {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: [ 'babel-loader' ]
-        }
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [ 'babel-loader' ]
+            }
         ]
     }
+
 }
 
-module.exports = config;
+module.exports = config
