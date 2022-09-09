@@ -5,6 +5,11 @@
   "main": "template.js",
   "author": "Edward Lampoh",
   "license": "MIT",
+
+  "scripts": {
+    "development": "nodemon"
+  },
+
   "devDependencies": {
     "@babel/core": "^7.19.0",
     "@babel/preset-env": "^7.19.0",
