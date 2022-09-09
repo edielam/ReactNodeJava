@@ -4,5 +4,10 @@
   "description": "a skeleton for mern apps",
   "main": "template.js",
   "author": "Edward Lampoh",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@babel/preset-env": "^7.19.0",
+    "babel-loader": "^8.2.5"
+  }
 }
