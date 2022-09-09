@@ -1,0 +1,8 @@
+{
+  "name": "mern-skeleton",
+  "version": "1.0.0",
+  "description": "a skeleton for mern apps",
+  "main": "template.js",
+  "author": "Edward Lampoh",
+  "license": "MIT"
+}
