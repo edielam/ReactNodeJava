@@ -63,6 +63,8 @@ UserSkema.methods = {
         }
     },
     makeSalt: function() {
-        return Math.round((new Date().valueOf() * ))
+        return Math.round((new Date().valueOf() * Math.random())) + ''
     }
 }
+
+export default mangoose.model('User', UserSkema)
