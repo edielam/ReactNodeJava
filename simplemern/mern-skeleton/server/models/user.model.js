@@ -25,3 +25,16 @@ const UserSkema = new mongoose.Schema({
     },
     salt: String
 })
+
+UserSkema
+    .virtual('password')
+    .set(function(password){
+        this._password = password
+        this.salt = this.makeSalt()
+        this.hashedPasssword = this.encryptPassowrd(password)
+    })
+    .get(function(){
+        return this._password
+    })
+
+UserSkema.path('hashedPassword').validate()
