@@ -55,9 +55,14 @@ UserSkema.methods = {
         if(!passowrd) return ''
         try {
             return crypto
-            .cre
-        } catch (error) {
-            
+            .createHmac('sha1', this.salt)
+            .update(passowrd)
+            .digest('hex')
+        } catch (err) {
+            return ''
         }
+    },
+    makeSalt: function() {
+        return Math.round((new Date().valueOf() * ))
     }
 }
