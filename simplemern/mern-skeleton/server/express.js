@@ -15,8 +15,8 @@ app.use(compress())
 app.use(helmet())
 app.use(cors())
 
-app.get('/', (res, req) => {
-    req.status(200).send(template())
+app.get('/', (requ, resp) => {
+    resp.status(200).send(template())
 })
 
 export default app
