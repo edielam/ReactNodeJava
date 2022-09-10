@@ -1,6 +1,6 @@
-import config from "../config/config";
-import mongoose from 'mongoose';
-import app from "./express";
+import config from "../config/config"
+import app from "./express"
+import mongoose from 'mongoose'
 
 mongoose.Promise = global.Promise
 mongoose.connect(config.mongoUri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
