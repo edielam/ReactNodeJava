@@ -20,6 +20,8 @@ const UserSkema = new mongoose.Schema({
     },
     updated: Date,
     hashedPasssword: {
-        
-    }
+        type: String,
+        required: 'Please enter your password'
+    },
+    salt: String
 })
