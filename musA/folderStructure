@@ -1,0 +1,31 @@
+├── src
+    ├── main
+        ├── java
+            └── com
+                └── example
+                    ├── Application.java
+                    ├── controller
+                    │   └── DroneController.java
+                    ├── model
+                    │   ├── Drone.java
+                    │   ├── DroneLoadRequest.java
+                    │   └── Medication.java
+                    ├── repository
+                    │   └── DroneRepository.java
+                    └── task
+                        └── BatteryCheckTask.java
+        ├── resources
+            └── application.properties
+    └── test
+        └── java
+            └── com
+                └── example
+                    ├── ApplicationTests.java
+                    ├── component
+                    │   └── DataLoader.java
+                    ├── controller
+                    │   └── DroneControllerTests.java
+                    └── repository
+                        └── DroneRepositoryTests.java
+├── pom.xml
+└── README.md

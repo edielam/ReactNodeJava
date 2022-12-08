@@ -1,0 +1,62 @@
+To implement this task with Spring Boot, I would start by creating a Drone class that 
+represents a drone and its properties. I would include fields for the serial number, 
+model, weight limit, battery capacity, and state. I would also include getter and setter methods for each field.
+
+Next, I would create a Medication class that represents a medication and its properties. 
+I would include fields for the name, weight, code, and image. I would also include getter
+ and setter methods for each field.
+
+I would then create a DroneController class that would define the REST API endpoints for 
+communicating with the drones. This class would contain methods for registering a drone, 
+loading a drone with medication items, checking loaded medication items for a given drone, 
+checking available drones for loading, and checking the battery level for a given drone.
+
+To store the drones and medications, I would use an in-memory database. I would create a 
+DroneRepository class that would provide methods for storing and retrieving drones and 
+medications. This class would use the in-memory database to store the data.
+
+Finally, I would configure the Spring Boot application to use the DroneRepository and 
+DroneController classes to provide the required functionality. This would involve defining 
+the necessary beans and mapping the REST API endpoints to the corresponding methods in the 
+DroneController class.
+
+
+- There is no need for UI;
+- Prevent the drone from being loaded with more weight that it can carry;
+- Prevent the drone from being in LOADING state if the battery level is **below 25%**;
+- Introduce a periodic task to check drones battery levels and create history/audit event log for this.
+
+To add the new requirements to the implementation, I would make the following changes:
+
+To prevent the drone from being loaded with more weight than it can carry, 
+I would add a validation check in the loadDrone method of the DroneController class. 
+This check would sum the weights of the medication items being loaded onto the drone 
+and compare it to the drone's weight limit. If the total weight exceeds the limit, the method would throw an error.
+
+To prevent the drone from being in the LOADING state if the battery level is below 25%, 
+I would add a validation check in the loadDrone method of the DroneController class.
+ This check would check the battery level of the drone and throw an error if the level is below 25%.
+
+To introduce a periodic task to check drones battery levels and create a history/audit 
+event log for this, I would create a BatteryCheckTask class that implements the Runnable interface. 
+This class would have a method that retrieves all drones from the DroneRepository and checks their
+ battery levels. For each drone, if the battery level is below 25%, it would create a new 
+ BatteryCheckEvent object and add it to the event log. The BatteryCheckTask class would be 
+ scheduled to run periodically using the @Scheduled annotation.
+
+ Here are few more requirements. Do not implement code. Just explain how will carry them out:
+-Input/output data must be in JSON format;
+- Project must be buildable and runnable;
+
+To fulfill the new requirements, I would make the following changes to the implementation:
+
+To ensure that the input and output data are in JSON format, I would add 
+the @RequestBody and @ResponseBody annotations to the appropriate methods 
+in the DroneController class. This would tell Spring to automatically convert 
+the request and response data to and from JSON format.
+
+To make the project buildable and runnable, I would create a pom.xml file 
+that defines the project dependencies and build configuration. This file would 
+include the Spring Boot dependency and any other dependencies needed by the project. 
+I would also add a main method to the Application class that calls the SpringApplication.run method 
+to start the application.
