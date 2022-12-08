@@ -1,3 +1,3 @@
 # ReactNodeJava
 
-This repo is for practising creating a java backend for a react project
+This repo is for mastering how to build a java backend for a react project
