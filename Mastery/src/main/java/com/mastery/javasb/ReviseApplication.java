@@ -24,7 +24,7 @@ public class ReviseApplication {
 	}
 
 	@Bean
-	public DroneController droneController(DroneRepository droneRepository) {
+	public DroneController droneController( DroneRepository droneRepository) {
 		return new DroneController(droneRepository);
 	}
 
