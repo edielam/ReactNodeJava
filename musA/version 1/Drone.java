@@ -1,3 +1,8 @@
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "drones")
 public class Drone {
 
     public enum DroneState {

@@ -21,7 +21,7 @@ To run the application, use the following command:
 
 java -jar target/drone-dispatch-controller-0.0.1-SNAPSHOT.jar
 
-This will start the Spring Boot application and make the API available at `http://localhost:8080`.
+This will start the Spring Boot application and make the API available at `http://localhost:8080/api`.
 
 ## Testing the Application
 

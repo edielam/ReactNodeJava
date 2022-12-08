@@ -1,4 +1,5 @@
 @RestController
+@RequestMapping("/api")
 public class DroneController {
 
     @Autowired
