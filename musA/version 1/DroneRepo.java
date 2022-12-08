@@ -1,21 +1,21 @@
-@Repository
-public class DroneRepository {
+// @Repository
+// public class DroneRepository {
 
-    private final Map<String, Drone> drones = new HashMap<>();
+//     private final Map<String, Drone> drones = new HashMap<>();
 
-    public void save(Drone drone) {
-        drones.put(drone.getId(), drone);
-    }
+//     public void save(Drone drone) {
+//         drones.put(drone.getId(), drone);
+//     }
 
-    public Drone findById(String id) {
-        return drones.get(id);
-    }
+//     public Drone findById(String id) {
+//         return drones.get(id);
+//     }
 
-    public List<Drone> findAll() {
-        return new ArrayList<>(drones.values());
-    }
+//     public List<Drone> findAll() {
+//         return new ArrayList<>(drones.values());
+//     }
 
-}
+// }
 
 // I am using a HashMap data structure in the DroneRepository class 
 // because it allows for efficient insertion, retrieval, and deletion of
