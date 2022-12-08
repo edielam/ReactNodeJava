@@ -23,3 +23,16 @@ public class DroneRepository {
 //  and the value is the Drone object itself. Using a HashMap allows for 
 //  quick lookup of a drone by its ID, which is necessary for the functionality
 //   of the REST API endpoints.
+
+public interface DroneRepository extends CrudRepository<Drone, String> {
+    String findById(String id);
+
+    List<Drone> findByModel(String model);
+
+    List<Drone> findByIdIn(List<String> ids);
+
+    List<Drone> findByState(DroneState state);
+
+    int updateBatteryCapacity(String id, int batteryCapacity);
+
+}

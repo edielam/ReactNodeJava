@@ -51,6 +51,12 @@ public class DroneController {
         // Return the list of medication items loaded on the drone
         return drone.getLoadedMedication();
     }
+    @GetMapping("/drone/{ids}")
+    public ResponseEntity<List<Drone>> getDronesByIds(@PathVariable List<String> ids) {
+        List<Drone> drones = droneRepository.findByIdIn(ids);
+        return ResponseEntity.ok(drones);
+}
+
 
     // Endpoint for checking available drones for loading
     @GetMapping("/available-drones")
