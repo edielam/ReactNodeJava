@@ -1,3 +1,8 @@
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "medication")
 public class Medication {
 
     private String name;
