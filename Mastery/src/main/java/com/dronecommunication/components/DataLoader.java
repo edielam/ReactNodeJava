@@ -20,8 +20,8 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         List<Medication> medicationList = Arrays.asList(
-                new Medication("Paracetamol", 10.2, "PARA001"),
-                new Medication("Ibuprofen", 15.3, "IBU001")
+                new Medication("Paracetamol", 50.2, "PARA001"),
+                new Medication("Ibuprofen", 50.2, "IBU001")
         );
         // Create a list of drones to preload
         List<Drone> drones = Arrays.asList(
@@ -29,11 +29,15 @@ public class DataLoader implements ApplicationRunner {
                 new Drone("456", "Middleweight", 200, 50, Drone.DroneState.DELIVERING),
                 new Drone("789", "Cruiserweight", 300, 25, Drone.DroneState.IDLE),
                 new Drone("225", "Middleweight", 100, 50, Drone.DroneState.DELIVERING),
-                new Drone("334", "Cruiserweight", 200, 25, Drone.DroneState.RETURNING, medicationList)
+                new Drone("334", "Cruiserweight", 200, 25, Drone.DroneState.RETURNING)
         );
+
+        for (Drone drone : drones){
+            drone.setMedications(medicationList);
+        }
 
         // Save the drones to the database
         droneRepository.saveAll(drones);
     }
-
 }
+
