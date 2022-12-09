@@ -14,7 +14,7 @@
 	<name>revise</name>
 	<description>Spring Boot Mastery</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>9</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -40,6 +40,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>3.0.2</version>
 		</dependency>
 	</dependencies>
 

@@ -1,17 +1,33 @@
 package com.dronecommunication.model;
 
-import java.util.List;
+import jakarta.persistence.*;
 
+import java.util.List;
+@Entity
+@Table(name = "drones")
 public class Drone {
     public enum DroneState {
         IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING
     }
-
+//    public enum Model {
+//        LIGHTWEIGHT, MIDDLEWEIGHT, CRUISERWEIGHT, HEAVYWEIGHT
+//    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "serial_number", nullable = false, length = 100)
     private String serialNumber;
+    @Column(name = "model", nullable = false, length = 50)
+    //@Enumerated(EnumType.STRING)
     private String model;
+    @Column(name = "weight_limit", nullable = false)
     private int weightLimit;
+    @Column(name = "battery_capacity", nullable = false)
     private int batteryCapacity;
+    @Column(name = "state", nullable = false)
+    @Enumerated(EnumType.STRING)
     private DroneState state;
+    @OneToMany(mappedBy = "drone", cascade = CascadeType.ALL)
     private List<Medication> medications;
 
     public Drone() {}
