@@ -1,34 +1,18 @@
-package com.mastery.javasb.model;
+package com.dronecommunication.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "medication")
 public class Medication {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
     private String name;
     private int weight;
     private String code;
+    private String image;
 
-    public Medication() {
-        // Default constructor
-    }
+    public Medication() {}
 
-    public Medication(String name, int weight, String code) {
+    public Medication(String name, int weight, String code, String image) {
         this.name = name;
         this.weight = weight;
         this.code = code;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.image = image;
     }
 
     public String getName() {
@@ -53,6 +37,14 @@ public class Medication {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
 

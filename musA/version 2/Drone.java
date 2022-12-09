@@ -1,47 +1,27 @@
-package com.mastery.javasb.model;
+package version 2;
 
-import jakarta.persistence.*;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-@Entity
-@Table(name = "drones")
 public class Drone {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    public enum DroneState {
+        IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING
+    }
+
     private String serialNumber;
     private String model;
     private int weightLimit;
     private int batteryCapacity;
-    public enum DroneState {
-        IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING
-    }
     private DroneState state;
-    private List<Medication> medicationList;
+    private List<Medication> medications;
 
-    public Drone() {
-        // Default constructor
-    }
+    public Drone() {}
 
     public Drone(String serialNumber, String model, int weightLimit, int batteryCapacity, DroneState state) {
-        this.id = UUID.randomUUID().toString();
         this.serialNumber = serialNumber;
         this.model = model;
         this.weightLimit = weightLimit;
         this.batteryCapacity = batteryCapacity;
         this.state = state;
-        this.medicationList = new ArrayList<>();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getSerialNumber() {
@@ -84,23 +64,11 @@ public class Drone {
         this.state = state;
     }
 
-    public List<Medication> getMedicationList() {
-        return medicationList;
+    public List<Medication> getMedications() {
+        return medications;
     }
 
-    public void setMedicationList(List<Medication> medicationList) {
-        this.medicationList = medicationList;
-    }
-
-    public void addMedication(Medication medication) {
-        this.medicationList.add(medication);
+    public void setMedications(List<Medication> medications) {
+        this.medications = medications;
     }
 }
-
-// I used the DroneState enum type instead of a string for creating a new
-// Drone instance because it provides type safety and ensures that only
-// valid states can be assigned to a Drone instance.
-
-// It is defined as an inner class of the Drone class, which means
-// that it is only accessible from within the Drone class or from
-// any other class within the same package.
