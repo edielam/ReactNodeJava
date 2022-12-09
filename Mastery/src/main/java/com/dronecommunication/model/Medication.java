@@ -23,7 +23,7 @@ public class Medication {
     @Pattern(regexp = "^[A-Z_\\d]*$")
     private String code;
 
-    @Column(name = "image", nullable = false)
+    @Column(name = "image", nullable = true)
     @Lob
     private byte[] image;
 
@@ -33,6 +33,12 @@ public class Medication {
 
     // Default constructor is required by Hibernate
     public Medication() {}
+
+    public Medication(String name, Double weight, String code) {
+        this.name = name;
+        this.weight = weight;
+        this.code = code;
+    }
 
     public Long getId() {
         return id;

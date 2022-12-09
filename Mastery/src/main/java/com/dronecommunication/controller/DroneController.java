@@ -46,6 +46,11 @@ public class DroneController {
         return droneService.getAvailableDrones();
     }
 
+    @GetMapping("/loaded-medication/{droneId}")
+    public  @ResponseBody List<Medication> getLoadedMedication(@PathVariable Long droneId){
+        return droneService.getLoadedMedication(droneId);
+    }
+
     @PostMapping("/load")
     public void loadDrone(@RequestBody Drone drone, @RequestBody List<Medication> medications) {
         droneService.loadDrone(drone, medications);

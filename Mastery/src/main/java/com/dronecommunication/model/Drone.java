@@ -40,6 +40,15 @@ public class Drone {
         this.state = state;
     }
 
+    public Drone(String serialNumber, String model, int weightLimit, int batteryCapacity, DroneState state, List<Medication> medications) {
+        this.serialNumber = serialNumber;
+        this.model = model;
+        this.weightLimit = weightLimit;
+        this.batteryCapacity = batteryCapacity;
+        this.state = state;
+        this.medications = medications;
+    }
+
     public String getSerialNumber() {
         return serialNumber;
     }

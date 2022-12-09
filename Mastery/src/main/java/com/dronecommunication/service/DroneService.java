@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DroneService {
@@ -36,7 +37,13 @@ public class DroneService {
     }
 
     public List<Drone> getAvailableDrones() {
-        return droneRepository.findByState(Drone.DroneState.IDLE);
+        // Retrieve all drones from the repository
+        List<Drone> drones = droneRepository.findAll();
+
+        // Filter the list of drones to only include drones in the IDLE or RETURNING state
+        return drones.stream()
+                .filter(d -> d.getState() == Drone.DroneState.IDLE || d.getState() == Drone.DroneState.RETURNING)
+                .collect(Collectors.toList());
     }
 
     public void loadDrone(Drone drone, List<Medication> medications) {
@@ -50,6 +57,11 @@ public class DroneService {
             updateDrone(drone);
         }
     }
+    public List<Medication> getLoadedMedication(Long id) {
+        Optional<Drone> drone = droneRepository.findById(id);
+        return drone.get().getMedications();
+    }
+
 }
 
 // The DroneService class contains methods for managing the Drone entity, such
