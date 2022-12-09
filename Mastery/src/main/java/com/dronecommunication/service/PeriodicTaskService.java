@@ -1,13 +1,17 @@
 package com.dronecommunication.service;
 
+import java.util.List;
+
 import com.dronecommunication.model.Drone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class PeriodicTaskService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PeriodicTaskService.class);
 
     private final DroneService droneService;
 
@@ -20,8 +24,7 @@ public class PeriodicTaskService {
         List<Drone> drones = droneService.getAllDrones();
         for (Drone drone : drones) {
             int batteryLevel = drone.getBatteryCapacity();
-            // log the battery level for each drone
-            // ...
+            LOG.info("Battery level for drone {}: {}%", drone.getSerialNumber(), batteryLevel);
         }
     }
 }
