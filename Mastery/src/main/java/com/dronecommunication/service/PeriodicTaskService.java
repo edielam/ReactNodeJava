@@ -1,7 +1,5 @@
 package com.dronecommunication.service;
 
-import java.util.List;
-
 import com.dronecommunication.model.Drone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
