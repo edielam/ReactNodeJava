@@ -5,26 +5,29 @@ import java.util.List;
 import com.dronecommunication.model.Drone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
 
-@Service
+
+@Configuration
+@EnableScheduling
 public class PeriodicTaskService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PeriodicTaskService.class);
+    private final Logger logger = LoggerFactory.getLogger("drone.battery-capacity");
 
-    private final DroneService droneService;
+    private DroneService droneService;
 
-    public PeriodicTaskService(DroneService droneService) {
+    @Autowired
+    public void setDroneRepository(DroneService droneService) {
         this.droneService = droneService;
     }
 
-    @Scheduled(cron = "${app.battery-check-task.cron}")
-    public void checkBatteryLevels() {
-        List<Drone> drones = droneService.getAllDrones();
-        for (Drone drone : drones) {
-            int batteryLevel = drone.getBatteryCapacity();
-            LOG.info("Battery level for drone {}: {}%", drone.getSerialNumber(), batteryLevel);
+    @Scheduled(fixedDelayString = "${drone-battery-check-interval-ms}")
+    private void checkBatteryLevels() {
+        for (Drone drone : droneService.getAllDrones()) {
+            logger.info("{}: {}", drone.getSerialNumber(), drone.getBatteryCapacity());
         }
     }
 }
