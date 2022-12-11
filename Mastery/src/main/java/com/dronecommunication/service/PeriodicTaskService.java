@@ -25,7 +25,7 @@ public class PeriodicTaskService {
     @Scheduled(fixedDelayString = "${drone-battery-check-interval-ms}")
     private void checkBatteryLevels() {
         for (Drone drone : droneService.getAllDrones()) {
-            logger.info("{}: {}", drone.getSerialNumber(), drone.getBatteryCapacity());
+            logger.info("Battery Capacity of drone {}: {}%", drone.getSerialNumber(), drone.getBatteryCapacity());
         }
     }
 }

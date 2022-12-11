@@ -25,11 +25,11 @@ public class DataLoader implements ApplicationRunner {
         );
         // Create a list of drones to preload
         List<Drone> drones = Arrays.asList(
-                new Drone("123", "Lightweight", 100, 75, Drone.DroneState.IDLE),
-                new Drone("456", "Middleweight", 200, 50, Drone.DroneState.DELIVERING),
-                new Drone("789", "Cruiserweight", 300, 25, Drone.DroneState.IDLE),
-                new Drone("225", "Middleweight", 100, 50, Drone.DroneState.DELIVERING),
-                new Drone("334", "Cruiserweight", 200, 25, Drone.DroneState.RETURNING)
+                new Drone("A000091", "Lightweight", 100, 75, Drone.DroneState.IDLE),
+                new Drone("A000092", "Middleweight", 200, 50, Drone.DroneState.DELIVERING),
+                new Drone("A000093", "Cruiserweight", 300, 25, Drone.DroneState.IDLE),
+                new Drone("A000094", "Middleweight", 100, 50, Drone.DroneState.DELIVERING),
+                new Drone("A000095", "Cruiserweight", 200, 25, Drone.DroneState.RETURNING)
         );
 
         for (Drone drone : drones){
