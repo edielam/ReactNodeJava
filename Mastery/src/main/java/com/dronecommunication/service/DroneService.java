@@ -62,6 +62,13 @@ public class DroneService {
         return drone.get().getMedications();
     }
 
+    public void droneSetState(Drone drone, Drone.DroneState State){
+         drone.setState(State);
+    }
+
+    public List<Drone> getByIdIn(List<String> ids) {
+        return droneRepository.findByIdIn(ids);
+    }
 }
 
 // The DroneService class contains methods for managing the Drone entity, such
