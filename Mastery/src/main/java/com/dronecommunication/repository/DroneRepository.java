@@ -12,5 +12,7 @@ public interface DroneRepository extends JpaRepository<Drone, Long> {
     List<Drone> findByState(Drone.DroneState IDLE);
 
     List<Drone> findByIdIn(List<String> ids);;
+
+    Optional<Drone> findBySerialNumber(String serialNumber);
 }
 

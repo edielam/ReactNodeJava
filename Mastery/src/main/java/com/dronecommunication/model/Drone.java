@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.List;
 @Entity
-@Table(name = "drones")
+@Table(name = "DRONE")
 public class Drone {
     public enum DroneState {
         IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING
@@ -15,19 +15,20 @@ public class Drone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "serial_number", nullable = true, length = 100)
+    @Column(name = "SERIAL_NUMBER", nullable = true, length = 100)
     private String serialNumber;
-    @Column(name = "model", nullable = false, length = 50)
+    @Column(name = "MODEL", nullable = false, length = 50)
     //@Enumerated(EnumType.STRING)
     private String model;
-    @Column(name = "weight_limit", nullable = false)
+    @Column(name = "WEIGHT_LIMIT", nullable = false)
     private int weightLimit;
-    @Column(name = "battery_capacity", nullable = false)
+    @Column(name = "BATTERY_CAPACITY", nullable = false)
     private int batteryCapacity;
-    @Column(name = "state", nullable = false)
+    @Column(name = "STATE", nullable = false)
     @Enumerated(EnumType.STRING)
     private DroneState state;
-    @OneToMany(mappedBy = "drone", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "DRONE_ID")
     private List<Medication> medications;
 
     public Drone() {}
@@ -47,14 +48,6 @@ public class Drone {
         this.batteryCapacity = batteryCapacity;
         this.state = state;
         this.medications = medications;
-    }
-
-    public Drone(Long id, String model, int weightLimit, int batteryCapacity, DroneState state) {
-        this.id = id;
-        this.model = model;
-        this.weightLimit = weightLimit;
-        this.batteryCapacity = batteryCapacity;
-        this.state = state;
     }
 
     public Long getId() {

@@ -5,31 +5,31 @@ import jakarta.validation.constraints.Pattern;
 
 
 @Entity
-@Table(name = "medication")
+@Table(name = "MEDICATION")
 public class Medication {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     @Pattern(regexp = "^[a-zA-Z\\d-_]*$")
     private String name;
 
-    @Column(name = "weight", nullable = false)
+    @Column(name = "WEIGHT", nullable = false)
     private Double weight;
 
-    @Column(name = "code", nullable = false, length = 10)
+    @Column(name = "CODE", nullable = false, length = 10)
     @Pattern(regexp = "^[A-Z_\\d]*$")
     private String code;
 
-    @Column(name = "image", nullable = true)
+    @Column(name = "IMAGE_URL", nullable = true)
     @Lob
-    private byte[] image;
+    private String image;
 
     @ManyToOne
-    @JoinColumn(name = "drone_id")
-    private Drone drone;
+    @JoinColumn(name = "DRONE_ID")
+    private Drone DRONE;
 
     // Default constructor is required by Hibernate
     public Medication() {}
@@ -38,6 +38,13 @@ public class Medication {
         this.name = name;
         this.weight = weight;
         this.code = code;
+    }
+
+    public Medication(String name, Double weight, String code, String image) {
+        this.name = name;
+        this.weight = weight;
+        this.code = code;
+        this.image = image;
     }
 
     public Long getId() {
@@ -72,19 +79,19 @@ public class Medication {
         this.code = code;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public Drone getDrone() {
-        return drone;
-    }
-
-    public void setDrone(Drone drone) {
-        this.drone = drone;
-    }
+    //    public Drone getDrone() {
+//        return DRONE;
+//    }
+//
+//    public void setDrone(Drone drone) {
+//        this.DRONE = drone;
+//    }
 }
