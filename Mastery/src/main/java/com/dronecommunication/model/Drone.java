@@ -15,7 +15,7 @@ public class Drone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "serial_number", nullable = false, length = 100)
+    @Column(name = "serial_number", nullable = true, length = 100)
     private String serialNumber;
     @Column(name = "model", nullable = false, length = 50)
     //@Enumerated(EnumType.STRING)
@@ -47,6 +47,14 @@ public class Drone {
         this.batteryCapacity = batteryCapacity;
         this.state = state;
         this.medications = medications;
+    }
+
+    public Drone(Long id, String model, int weightLimit, int batteryCapacity, DroneState state) {
+        this.id = id;
+        this.model = model;
+        this.weightLimit = weightLimit;
+        this.batteryCapacity = batteryCapacity;
+        this.state = state;
     }
 
     public Long getId() {

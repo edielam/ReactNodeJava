@@ -28,8 +28,8 @@ public class DroneService {
         return droneRepository.save(drone);
     }
 
-    public void updateDrone(Drone drone) {
-        droneRepository.save(drone);
+    public void updateDrone(Optional<Drone> drone) {
+        droneRepository.save(drone.get());
     }
 
     public void deleteDrone(long id) {
@@ -46,7 +46,8 @@ public class DroneService {
                 .collect(Collectors.toList());
     }
 
-    public void loadDrone(Drone drone, List<Medication> medications) {
+    public void loadDrone(Optional<Drone> request, List<Medication> medications) {
+        Drone drone = request.get();
         int totalWeight = 0;
         for (Medication medication : medications) {
             totalWeight += medication.getWeight();
@@ -54,7 +55,7 @@ public class DroneService {
         if (totalWeight <= drone.getWeightLimit() && drone.getBatteryCapacity() >= 25) {
             drone.setState(Drone.DroneState.LOADING);
             drone.setMedications(medications);
-            updateDrone(drone);
+            updateDrone(Optional.of(drone));
         }
     }
     public List<Medication> getLoadedMedication(Long id) {
@@ -62,8 +63,8 @@ public class DroneService {
         return drone.get().getMedications();
     }
 
-    public void droneSetState(Drone drone, Drone.DroneState State){
-         drone.setState(State);
+    public void droneSetState(Optional<Drone> drone, Drone.DroneState State){
+         drone.get().setState(State);
     }
 
     public List<Drone> getByIdIn(List<String> ids) {
