@@ -49,6 +49,14 @@ public class Drone extends AbstractEntity {
         this.medications = medications;
     }
 
+    public Drone(String serialNumber, Model model, Double weightLimit, int batteryCapacity, DroneState state) {
+        this.serialNumber = serialNumber;
+        this.model = model;
+        this.weightLimit = weightLimit;
+        this.batteryCapacity = batteryCapacity;
+        this.state = state;
+    }
+
     public String getSerialNumber() {
         return serialNumber;
     }
