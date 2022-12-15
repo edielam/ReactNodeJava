@@ -29,29 +29,10 @@ public class DroneController {
         return drones;
     }
 
-    // Endpoint for loading a drone with medication items
-//    @PostMapping("/load")
-//    public void loadDrone(@RequestBody Long id, List<Medication> medication) {
-//        // Retrieve the drone from the repository
-//        Optional<Drone> drone = droneService.getDroneById(id);
-//        droneService.loadDrone(drone, medication);
-//        // Update the drone's state to LOADED
-//        droneService.droneSetState(drone, Drone.DroneState.LOADED);
-//        // Save the updated drone to the repository
-//        droneService.updateDrone(drone);
-//    }
-//    @PostMapping("/{droneId}/medications")
-//    public void loadMedications(@PathVariable("droneId") String droneSerialNumber, @RequestBody List<Medication> medications) {
-//         droneService.(droneSerialNumber, medications);
-//    }
     @PutMapping("/{serialNumber}/medications")
-    public ResponseEntity<?> loadMedications(@PathVariable String serialNumber, @RequestBody List<Medication> medications) {
-        try {
-            droneService.loadMedications(serialNumber, medications);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public @ResponseBody List<Medication> loadMedications(@PathVariable String serialNumber, @RequestBody List<Medication> medications) {
+        List<Medication> addedMedications= droneService.loadMedications(serialNumber, medications);
+        return addedMedications;
     }
 
     // Endpoint for checking loaded medication items for a given drone

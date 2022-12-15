@@ -1,61 +1,52 @@
 package com.dronecommunication.model;
 
+
+import com.dronecommunication.components.AbstractEntity;
 import jakarta.persistence.*;
 
 import java.util.List;
+
 @Entity
-@Table(name = "DRONE")
-public class Drone {
-    public enum DroneState {
-        IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING
+@Table(name = "DS_DRONE")
+public class Drone extends AbstractEntity {
+    public enum Model {LIGHT_WEIGHT, MIDDLE_WEIGHT, CRUISER_WEIGHT,
+        HEAVY_WEIGHT;
     }
-//    public enum Model {
-//        LIGHTWEIGHT, MIDDLEWEIGHT, CRUISERWEIGHT, HEAVYWEIGHT
-//    }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "SERIAL_NUMBER", nullable = true, length = 100)
+    public enum DroneState {IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING;
+    }
+
+
+    @Column(name = "SN", unique = true, length = 100, nullable = false)
     private String serialNumber;
-    @Column(name = "MODEL", nullable = false, length = 50)
-    //@Enumerated(EnumType.STRING)
-    private String model;
-    @Column(name = "WEIGHT_LIMIT", nullable = false)
-    private int weightLimit;
-    @Column(name = "BATTERY_CAPACITY", nullable = false)
+
+    @Column(name = "MODEL", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Model model;
+
+    @Column(name = "MAX_WEIGHT")
+    private Double weightLimit;
+
+    @Column(name = "BATTERY_LEVEL")
     private int batteryCapacity;
+
     @Column(name = "STATE", nullable = false)
     @Enumerated(EnumType.STRING)
     private DroneState state;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "DRONE_ID")
     private List<Medication> medications;
 
-    public Drone() {}
-
-    public Drone(String serialNumber, String model, int weightLimit, int batteryCapacity, DroneState state) {
-        this.serialNumber = serialNumber;
-        this.model = model;
-        this.weightLimit = weightLimit;
-        this.batteryCapacity = batteryCapacity;
-        this.state = state;
+    public Drone() {
     }
 
-    public Drone(String serialNumber, String model, int weightLimit, int batteryCapacity, DroneState state, List<Medication> medications) {
+    public Drone(String serialNumber, Model model, Double weightLimit, int batteryCapacity, DroneState state, List<Medication> medications) {
         this.serialNumber = serialNumber;
         this.model = model;
         this.weightLimit = weightLimit;
         this.batteryCapacity = batteryCapacity;
         this.state = state;
         this.medications = medications;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getSerialNumber() {
@@ -66,19 +57,19 @@ public class Drone {
         this.serialNumber = serialNumber;
     }
 
-    public String getModel() {
+    public Model getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(Model model) {
         this.model = model;
     }
 
-    public int getWeightLimit() {
+    public Double getWeightLimit() {
         return weightLimit;
     }
 
-    public void setWeightLimit(int weightLimit) {
+    public void setWeightLimit(Double weightLimit) {
         this.weightLimit = weightLimit;
     }
 
@@ -86,8 +77,8 @@ public class Drone {
         return batteryCapacity;
     }
 
-    public void setBatteryCapacity(int batteryCapacity) {
-        this.batteryCapacity = batteryCapacity;
+    public void setBatteryLevel(int batteryLevel) {
+        this.batteryCapacity = batteryLevel;
     }
 
     public DroneState getState() {

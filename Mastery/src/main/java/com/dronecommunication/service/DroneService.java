@@ -4,8 +4,13 @@ import com.dronecommunication.model.Drone;
 import com.dronecommunication.model.Medication;
 import com.dronecommunication.repository.DroneRepository;
 import com.dronecommunication.repository.MedicationRepository;
+import jakarta.persistence.LockModeType;
+import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +34,7 @@ public class DroneService {
     }
 
     public Drone registerDrone(Drone drone) {
+        drone.setState(Drone.DroneState.LOADING);
         return droneRepository.save(drone);
     }
 
@@ -49,6 +55,79 @@ public class DroneService {
                 .filter(d -> d.getState() == Drone.DroneState.IDLE || d.getState() == Drone.DroneState.RETURNING)
                 .collect(Collectors.toList());
     }
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    public List<Medication> loadMedications(String droneSerialNumber, List<Medication> medications) {
+
+        //List<Medication> medicationDAOS = medicationMapper.mapListIn(medications);
+
+        Optional<Drone> droneOptional = droneRepository.findBySerialNumber(droneSerialNumber);
+        if (droneOptional.isPresent()) {
+            Drone drone = droneOptional.get();
+
+            //validate(medications, drone);
+
+            drone.getMedications().addAll(medications);
+            drone.setState(Drone.DroneState.LOADED);
+            Drone savedDrone = droneRepository.saveAndFlush(drone);
+            return savedDrone.getMedications();
+        } else {
+            throw new ValidationException("Specified drone is not found");
+        }
+    }
+//    @Transactional(isolation = Isolation.READ_COMMITTED)
+//    @Lock(LockModeType.PESSIMISTIC_WRITE)
+//    public List<Medication> loadMedications(String serialNumber, List<Medication> medications) {
+//        // Retrieve the Drone object with the given serial number
+//        Optional<Drone> optionalDrone = droneRepository.findBySerialNumber(serialNumber);
+//        if (!optionalDrone.isPresent()) {
+//            throw new IllegalArgumentException("Drone with serial number " + serialNumber + " not found");
+//        }
+//        Drone drone = optionalDrone.get();
+//
+//        // Calculate the total weight of the medications
+//        int totalWeight = 0;
+//        for (Medication medication : medications) {
+//            totalWeight += medication.getWeight();
+//        }
+//
+//        // Check if the total weight of the medications is less than or equal to the weight limit of the drone
+//        if (totalWeight > drone.getWeightLimit()) {
+//            throw new IllegalArgumentException("Total weight of medications exceeds drone's weight limit");
+//        }
+//
+//        // Check if the battery capacity of the drone is greater than or equal to 25%
+//        if (drone.getBatteryCapacity() < 25) {
+//            throw new IllegalArgumentException("Drone's battery capacity is below 25%");
+//        }
+//
+//        // Insert the medications into the database
+//        medicationRepository.saveAll(medications);
+//
+//        // Update the Drone object to reflect that it is now in the LOADING state
+//        drone.setState(Drone.DroneState.LOADED);
+//        droneRepository.save(drone);
+//
+//        return drone.getMedications();
+//    }
+
+
+
+    public Optional<Drone> getDroneBySerialNumber(String serialNumber) {
+        Optional<Drone> drone = droneRepository.findBySerialNumber(serialNumber);
+        return drone;
+    }
+
+    public List<Medication> getLoadedMedication(String serialNumber) {
+        Optional<Drone> drone = droneRepository.findBySerialNumber(serialNumber);
+        return drone.get().getMedications();
+    }
+
+
+    public List<Drone> getByIdIn(List<String> ids) {
+        return droneRepository.findByIdIn(ids);
+    }
+}
 
 //    public void loadDrone(Optional<Drone> request, List<Medication> medications) {
 //        Drone drone = request.get();
@@ -62,7 +141,7 @@ public class DroneService {
 //            updateDrone(Optional.of(drone));
 //        }
 //    }
-    // other methods omitted
+// other methods omitted
 
 //    public void loadMedications(String serialNumber, List<Medication> medications) {
 //        Optional<Drone> dreg = getDroneBySerialNumber(serialNumber);
@@ -81,55 +160,6 @@ public class DroneService {
 //        drone.setState(Drone.DroneState.LOADING);
 //        drone.setMedications(medications);
 //    }
-    public void loadMedications(String serialNumber, List<Medication> medications) {
-        // Retrieve the Drone object with the given serial number
-        Optional<Drone> optionalDrone = droneRepository.findBySerialNumber(serialNumber);
-        if (!optionalDrone.isPresent()) {
-            throw new IllegalArgumentException("Drone with serial number " + serialNumber + " not found");
-        }
-        Drone drone = optionalDrone.get();
-
-        // Calculate the total weight of the medications
-        int totalWeight = 0;
-        for (Medication medication : medications) {
-            totalWeight += medication.getWeight();
-        }
-
-        // Check if the total weight of the medications is less than or equal to the weight limit of the drone
-        if (totalWeight > drone.getWeightLimit()) {
-            throw new IllegalArgumentException("Total weight of medications exceeds drone's weight limit");
-        }
-
-        // Check if the battery capacity of the drone is greater than or equal to 25%
-        if (drone.getBatteryCapacity() < 25) {
-            throw new IllegalArgumentException("Drone's battery capacity is below 25%");
-        }
-
-        // Insert the medications into the database
-        medicationRepository.saveAll(medications);
-
-        // Update the Drone object to reflect that it is now in the LOADING state
-        drone.setState(Drone.DroneState.LOADING);
-        droneRepository.save(drone);
-    }
-
-
-
-    public Optional<Drone> getDroneBySerialNumber(String serialNumber) {
-        Optional<Drone> drone = droneRepository.findBySerialNumber(serialNumber);
-        return drone;
-    }
-
-    public List<Medication> getLoadedMedication(String serialNumber) {
-        Optional<Drone> drone = droneRepository.findBySerialNumber(serialNumber);
-        return drone.get().getMedications();
-    }
-    
-
-    public List<Drone> getByIdIn(List<String> ids) {
-        return droneRepository.findByIdIn(ids);
-    }
-}
 
 // The DroneService class contains methods for managing the Drone entity, such
 // as getting all drones, getting a single drone by its ID, registering a new drone,
