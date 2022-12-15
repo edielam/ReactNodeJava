@@ -2,11 +2,10 @@ package com.dronecommunication.model;
 
 import com.dronecommunication.components.AbstractEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
 
 
 @Entity
-@Table(name = "DS_MEDICATION")
+@Table(name = "DB_MEDICATION")
 public class Medication extends AbstractEntity {
     @Column(name = "CODE", unique = true, nullable = false)
     private String code;

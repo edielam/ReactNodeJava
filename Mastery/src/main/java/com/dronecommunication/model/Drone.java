@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "DS_DRONE")
+@Table(name = "DB_DRONE")
 public class Drone extends AbstractEntity {
     public enum Model {LIGHT_WEIGHT, MIDDLE_WEIGHT, CRUISER_WEIGHT,
         HEAVY_WEIGHT;
@@ -23,10 +23,10 @@ public class Drone extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Model model;
 
-    @Column(name = "MAX_WEIGHT")
+    @Column(name = "WEIGHT_LIMIT")
     private Double weightLimit;
 
-    @Column(name = "BATTERY_LEVEL")
+    @Column(name = "BATTERY_CAPACITY")
     private int batteryCapacity;
 
     @Column(name = "STATE", nullable = false)
