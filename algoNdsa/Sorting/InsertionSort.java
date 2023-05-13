@@ -19,7 +19,7 @@ public class InsertionSort {
     }
     public static int[] sorted(){
         int[] arr2 = getYourArray();
-        for(int i = 0; i<arr2.length; i++){
+        for(int i = 1; i<arr2.length; i++){
             for(int j= i; j> 0; j--){
                 if(arr2[j] < arr2[j-1])
                     swap(arr2, j, j-1);
