@@ -1,6 +1,6 @@
 package Sorting;
 public class BubbleSort {
-    static int[] yourArray = new int[7];
+    static int[] yourArray;
 
     public static int[] getYourArray() {
         return yourArray;

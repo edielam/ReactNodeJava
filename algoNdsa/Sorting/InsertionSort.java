@@ -1,14 +1,15 @@
 package Sorting;
 
-public class SelectionSort {
+public class InsertionSort {
     static int[] yourArray;
-
-    public SelectionSort(int[] yourArray) {
+    public InsertionSort(int[] yourArray) {
         this.yourArray = yourArray;
     }
+
     public static int[] getYourArray() {
         return yourArray;
     }
+
     public static void swap(int[] arr, int i, int j){
         if(i==j)
             return;
@@ -17,16 +18,13 @@ public class SelectionSort {
         arr[j] = temp;
     }
     public static int[] sorted(){
-        int[] arr = getYourArray();
-        for(int i= arr.length -1; i > 0; i--){
-            int max = 0;
-            for(int j=1; j< i; j++){
-                if(arr[max] < arr[j]) {
-                    max = j;
-                }
+        int[] arr2 = getYourArray();
+        for(int i = 0; i<arr2.length; i++){
+            for(int j= i; j> 0; j--){
+                if(arr2[j] < arr2[j-1])
+                    swap(arr2, j, j-1);
             }
-            swap(arr, i, max);
         }
-        return arr;
+        return arr2;
     }
 }
