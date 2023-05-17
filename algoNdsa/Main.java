@@ -1,16 +1,18 @@
 import Sorting.BubbleSort;
 import Sorting.InsertionSort;
 import Sorting.SelectionSort;
+import Sorting.ShellSort;
 
 public class Main {
     public static void main(String[] args) {
-        int[] intArray = new int[7];
+        int[] intArray = new int[8];
         intArray[0] = 233;
         intArray[1] = -23;
         intArray[2] = 13;
         intArray[3] =-10;
         intArray[4] = 5;
         intArray[5] = 25;
+        intArray[6] =-20;
 
 //        BubbleSort bSort = new BubbleSort(intArray);
 //        int[] ans = bSort.getSorted();
@@ -22,8 +24,13 @@ public class Main {
 //        for(int i=0; i< ans2.length; i++){
 //            System.out.println(ans2[i]);
 //        }
-        InsertionSort iSort = new InsertionSort(intArray);
-        int[] ans = iSort.sorted();
+//        InsertionSort iSort = new InsertionSort(intArray);
+//        int[] ans = iSort.sorted();
+//        for(int i=0; i< ans.length; i++){
+//            System.out.println(ans[i]);
+//        }
+        ShellSort shellSort = new ShellSort(intArray);
+        int[] ans = shellSort.sorted();
         for(int i=0; i< ans.length; i++){
             System.out.println(ans[i]);
         }
