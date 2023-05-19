@@ -1,9 +1,13 @@
-import Sorting.BubbleSort;
-import Sorting.InsertionSort;
-import Sorting.SelectionSort;
-import Sorting.ShellSort;
+import Sorting.*;
+;
 
 public class Main {
+    //Recursion
+    public static int recursiveFactorial(int num){
+        if(num == 0)
+            return 1;
+        return num * recursiveFactorial(num -1 );
+    }
     public static void main(String[] args) {
         int[] intArray = new int[8];
         intArray[0] = 233;
@@ -29,10 +33,15 @@ public class Main {
 //        for(int i=0; i< ans.length; i++){
 //            System.out.println(ans[i]);
 //        }
-        ShellSort shellSort = new ShellSort(intArray);
-        int[] ans = shellSort.sorted();
-        for(int i=0; i< ans.length; i++){
-            System.out.println(ans[i]);
+//        ShellSort shellSort = new ShellSort(intArray);
+//        int[] ans = shellSort.sorted();
+//        for(int i=0; i< ans.length; i++){
+//            System.out.println(ans[i]);
+//        }
+//        System.out.println("Factorial of 5 is: "+recursiveFactorial(5));
+        System.out.println("Sorted array:");
+        for (int num : intArray) {
+            System.out.print(num + " ");
         }
     }
 }
